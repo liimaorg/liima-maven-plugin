@@ -1,0 +1,21 @@
+[
+  {
+    "id": 76251,
+    "trackingId": 64640,
+    "state": "success",
+    "deploymentDate": 1448361027585,
+    "appServerName": "server_name_2",
+    "appsWithVersion": [
+      {
+        "applicationName": "application_name_2",
+        "version": "0.1.36"
+      }
+    ],
+    "environmentName": "Y",
+    "releaseName": "RL-16.04",
+    "targetPlatform": "Docker",
+    "requestUser": "exampleusername",
+    "confirmUser": "exampleusername",
+    "cancleUser": null
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "id": 76355,
+  "trackingId": 64752,
+  "state": "requested",
+  "deploymentDate": 1448386987266,
+  "appServerName": "server_name_1",
+  "appsWithMvnVersion": [
+    {
+      "applicationName": "application_name_1",
+      "mavenVersion": "1.2.812"
+    }
+  ],
+  "environmentName": "Y",
+  "releaseName": "RL-16.04",
+  "targetPlatform": "EAP6",
+  "requestUser": "exampleusername",
+  "confirmUser": null,
+  "cancleUser": null
+}

@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/DECORATION/1.7.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/DECORATION/1.7.0 http://maven.apache.org/xsd/decoration-1.7.0.xsd">
+
+	<bannerRight>
+		<name>die Mobiliar</name>
+		<src>images/mob_d_u.png</src>
+		<height>80px</height>
+		<width>141px</width>
+	</bannerRight>
+
+	<body>
+		<links>
+			<item name="Mobiliar Open Source" href="https://mobiliar.bitbucket.io/" />
+		</links>
+<!--
+		<breadcrumbs>
+			<item name="Start" href="index.html" />
+		</breadcrumbs>
+-->
+		<menu name="Overview">
+			<item name="Introduction" href="index.html"/>
+			<item name="Goals" href="plugin-info.html"/>
+		</menu>
+
+		<menu ref="reports"/>
+	</body>
+
+	<skin>
+		<groupId>org.apache.maven.skins</groupId>
+		<artifactId>maven-fluido-skin</artifactId>
+		<version>1.7</version>
+	</skin>
+</project>

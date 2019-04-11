@@ -1,0 +1,33 @@
+[
+  {
+    "id": 99668,
+    "trackingId": 85730,
+    "state": "success",
+    "deploymentDate": 1458223330161,
+    "appServerName": "server_name_1",
+    "appsWithVersion": [
+      {
+        "applicationName": "application_name_1",
+        "version": "1.20.0-1316"
+      }
+    ],
+    "environmentName": "Y",
+    "releaseName": "RL-16.04",
+    "runtimeName": "EAP6",
+    "requestUser": "exampleusername",
+    "confirmUser": "exampleusername",
+    "cancleUser": null,
+    "nodeJobs": [
+      {
+        "id": 41736,
+        "status": "RUNNING",
+        "deploymentState": "progress"
+      },
+      {
+        "id": 41735,
+        "status": "SUCCESS",
+        "deploymentState": "PRE_DEPLOYMENT"
+      }
+    ]
+  }
+]

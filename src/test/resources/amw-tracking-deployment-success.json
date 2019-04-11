@@ -1,0 +1,19 @@
+{
+  "id": 123456,
+  "trackingId": 63900,
+  "state": "success",
+  "deploymentDate": 1447758540731,
+  "appServerName": "server_name_1",
+  "appsWithMvnVersion": [
+    {
+      "applicationName": "application_name_1",
+      "mavenVersion": "1.20.0-796"
+    }
+  ],
+  "environmentName": "C",
+  "releaseName": "RL-16.04",
+  "targetPlatform": "EAP6",
+  "requestUser": "exampleusername",
+  "confirmUser": "exampleusername",
+  "cancleUser": null
+}
