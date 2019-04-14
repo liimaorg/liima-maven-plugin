@@ -2,6 +2,9 @@ language: java
 
 dist: xenial
 
+jdk:
+  - oraclejdk8
+
 stages:
   - name: build
     if: branch = master
