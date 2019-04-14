@@ -18,4 +18,5 @@ jobs:
         - mvn -B verify
     - stage: release
       script:
+        - gpg --version
         - mvn -B -P release deploy
