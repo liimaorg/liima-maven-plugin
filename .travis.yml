@@ -21,4 +21,5 @@ jobs:
     - stage: release
       script:
         - gpg --version
+        - gpg2 --version
         - mvn -B -P release deploy
