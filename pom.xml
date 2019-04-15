@@ -305,7 +305,7 @@
                                     <goal>sign</goal>
                                 </goals>
                                 <configuration>
-                                    <executable>gpg</executable>
+                                    <executable>gpg2</executable>
                                 </configuration>
                             </execution>
                         </executions>
