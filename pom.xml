@@ -305,11 +305,7 @@
                                     <goal>sign</goal>
                                 </goals>
                                 <configuration>
-                                    <executable>gpg2</executable>
-                                    <gpgArguments>
-                                        <arg>--pinentry-mode</arg>
-                                        <arg>loopback</arg>
-                                    </gpgArguments>
+                                    <executable>gpg</executable>
                                 </configuration>
                             </execution>
                         </executions>
@@ -342,9 +338,9 @@
     </distributionManagement>
 
     <scm>
-        <developerConnection>scm:git:https://bitbucket.org/mobiliar/amw-maven-plugin.git</developerConnection>
-        <connection>scm:git:https://bitbucket.org/mobiliar/amw-maven-plugin.git</connection>
-        <url>https://bitbucket.org/mobiliar/amw-maven-plugin.git</url>
+        <developerConnection>scm:git:https://github.com/liimaorg/liima-maven-plugin.git</developerConnection>
+        <connection>scm:git:https://github.com/liimaorg/liima-maven-plugin.git</connection>
+        <url>https://github.com/liimaorg/liima-maven-plugin.git</url>
     </scm>
 
     <url>https://mobiliar.bitbucket.io/amw-maven-plugin/</url>
