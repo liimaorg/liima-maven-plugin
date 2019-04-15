@@ -293,6 +293,16 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                         <version>1.6</version>
+                        <configuration>
+                            <executable>gpg2</executable>
+                            <keyname>${env.GPG_KEY}</keyname>
+                            <passphrase>${env.GPG_PASSPHRASE}</passphrase>
+                            <useAgent>true</useAgent>
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -300,12 +310,6 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
-                                <configuration>
-                                    <executable>gpg2</executable>
-                                    <keyname>${env.GPG_KEY}</keyname>
-                                    <passphrase>${env.GPG_PASSPHRASE}</passphrase>
-                                    <useAgent>true</useAgent>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
