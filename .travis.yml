@@ -26,7 +26,6 @@ jobs:
         - gpg --version
         - export NEW_VERSION=2.1.$TRAVIS_BUILD_NUMBER
         - openssl aes-256-cbc -pass env:OPENSSL_PASSWORD -in mobiliar-private-key.gpg.enc -out mobiliar-private-key.gpg -d -md sha256
-        - export GPG_TTY=$(tty)
         - gpg --batch --import mobiliar-private-key.gpg
         - mvn -B -DnewVersion=$NEW_VERSION versions:set
         - mvn -B -P release -s settings-sonatype.xml install
