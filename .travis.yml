@@ -7,7 +7,7 @@ cache:
 dist: xenial
 
 before_install:
-  - sudo apt-get install -y gpgv2
+  - sudo apt-get install pinentry-tty -y gpgv2
 
 jdk:
   - openjdk8
