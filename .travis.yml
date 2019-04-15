@@ -28,6 +28,7 @@ jobs:
         - openssl version
         - gpg --version
         - gpg2 --version
+        - cat ~/.gnupg/gpg-agent.conf
         - openssl aes-256-cbc -pass env:OPENSSL_PASSWORD -in mobiliar-private-key.gpg.enc -out mobiliar-private-key.gpg -d -md sha256
         - gpg2 --batch --import mobiliar-private-key.gpg
         - gpg2 --list-secret-keys --keyid-format LONG
