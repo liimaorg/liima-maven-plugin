@@ -261,10 +261,6 @@
     <profiles>
         <profile>
             <id>release</id>
-            <properties>
-                <gpg.keyname>${env.GPG_KEY}</gpg.keyname>
-                <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -306,6 +302,9 @@
                                 </goals>
                                 <configuration>
                                     <executable>gpg2</executable>
+                                    <keyname>${env.GPG_KEY}</keyname>
+                                    <passphrase>${env.GPG_PASSPHRASE}</passphrase>
+                                    <useAgent>true</useAgent>
                                 </configuration>
                             </execution>
                         </executions>
