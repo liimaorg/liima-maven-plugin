@@ -24,8 +24,11 @@ jobs:
         - mvn -B verify
     - stage: release
       script:
+        - openssl version
+        - gpg --version
+        - gpg2 --version
         - export NEW_VERSION=2.1.$TRAVIS_BUILD_NUMBER
-        - openssl aes-256-cbc -pass env:OPENSSL_PASSWORD -in mobiliar-private-key.gpg.enc -out mobiliar-private-key.gpg -d
+        - openssl aes-256-cbc -pass env:OPENSSL_PASSWORD -in mobiliar-private-key.gpg.enc -out mobiliar-private-key.gpg -d -md sha256
         - export GPG_TTY=$(tty)
         - gpg2 --batch --import mobiliar-private-key.gpg
         - mvn -B -DnewVersion=$NEW_VERSION versions:set
