@@ -25,9 +25,6 @@ jobs:
         - mvn -B verify
     - stage: release
       script:
-        - openssl version
-        - gpg --version
-        - gpg2 --version
         - echo "allow-loopback-pinentry" > ~/.gnupg/gpg-agent.conf
         - cat ~/.gnupg/gpg-agent.conf
         - openssl aes-256-cbc -pass env:OPENSSL_PASSWORD -in mobiliar-private-key.gpg.enc -out mobiliar-private-key.gpg -d -md sha256
@@ -35,16 +32,19 @@ jobs:
         - gpg2 --list-secret-keys --keyid-format LONG
         - export GPG_TTY=$(tty)
         - export NEW_VERSION=2.1.$TRAVIS_BUILD_NUMBER
+        #
+        # maven release build
+        #
         - mvn -B -DnewVersion=$NEW_VERSION versions:set
-        - mvn -B -P release -s settings-sonatype.xml install site
-#        - git tag release/$NEW_VERSION
-#        - git push origin release/$NEW_VERSION
+        - mvn -B -P release -s settings-sonatype.xml deploy site
+        #
+        # tag release on github
+        #
         - git config --global user.email "$GIT_RELEASE_EMAIL"
         - git config --global user.name "$GIT_RELEASE_USERNAME"
         - export GIT_TAG=release/$NEW_VERSION
         - git tag $GIT_TAG -a -m "tagging release"
         - git push -q https://$GITHUB_TOKEN@github.com/liimaorg/liima-maven-plugin.git --tags
-        - ls -R
 
 deploy:
   provider: pages
