@@ -22,7 +22,7 @@ jobs:
   include:
     - stage: build
       script: 
-        - mvn -B verify site
+        - mvn -B verify
     - stage: release
       script:
         - openssl version
@@ -36,7 +36,7 @@ jobs:
         - export GPG_TTY=$(tty)
         - export NEW_VERSION=2.1.$TRAVIS_BUILD_NUMBER
         - mvn -B -DnewVersion=$NEW_VERSION versions:set
-        - mvn -B -P release -s settings-sonatype.xml install
+        - mvn -B -P release -s settings-sonatype.xml install site
 #        - git tag release/$NEW_VERSION
 #        - git push origin release/$NEW_VERSION
         - git config --global user.email "$GIT_RELEASE_EMAIL"
