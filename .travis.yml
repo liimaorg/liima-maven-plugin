@@ -21,7 +21,7 @@ jobs:
   include:
     - stage: build
       script: 
-        - mvn -B verify
+        - mvn -B verify site
     - stage: release
       script:
         - export NEW_VERSION=2.1.$TRAVIS_BUILD_NUMBER
@@ -32,3 +32,11 @@ jobs:
         - mvn -B -P release -s settings-sonatype.xml install
 #        - git tag release/$NEW_VERSION
 #        - git push origin release/$NEW_VERSION
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: ./target/site
+  on:
+    branch: master
