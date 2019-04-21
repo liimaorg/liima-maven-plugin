@@ -5,8 +5,9 @@ cache:
   - $HOME/.m2
 
 dist: xenial
+
 before_install:
-  - sudo apt-get install -y gpgv2
+  - sudo apt-get install pinentry-tty -y gpgv2
 
 jdk:
   - openjdk8
@@ -24,10 +25,16 @@ jobs:
         - mvn -B verify site
     - stage: release
       script:
-        - export NEW_VERSION=2.1.$TRAVIS_BUILD_NUMBER
-        - openssl aes-256-cbc -pass env:OPENSSL_PASSWORD -in mobiliar-private-key.gpg.enc -out mobiliar-private-key.gpg -d
-        - export GPG_TTY=$(tty)
+        - openssl version
+        - gpg --version
+        - gpg2 --version
+        - echo "allow-loopback-pinentry" > ~/.gnupg/gpg-agent.conf
+        - cat ~/.gnupg/gpg-agent.conf
+        - openssl aes-256-cbc -pass env:OPENSSL_PASSWORD -in mobiliar-private-key.gpg.enc -out mobiliar-private-key.gpg -d -md sha256
         - gpg2 --batch --import mobiliar-private-key.gpg
+        - gpg2 --list-secret-keys --keyid-format LONG
+        - export GPG_TTY=$(tty)
+        - export NEW_VERSION=2.1.$TRAVIS_BUILD_NUMBER
         - mvn -B -DnewVersion=$NEW_VERSION versions:set
         - mvn -B -P release -s settings-sonatype.xml install
 #        - git tag release/$NEW_VERSION
