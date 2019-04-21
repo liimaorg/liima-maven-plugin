@@ -336,6 +336,14 @@
         </profile>
     </profiles>
 
+    <developers>
+        <developer>
+            <id>wemu</id>
+            <name>Werner Mueller</name>
+            <email>werner.mueller@monis.ch</email>
+        </developer>
+    </developers>
+
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
