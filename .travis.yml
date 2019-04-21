@@ -43,7 +43,7 @@ jobs:
         - git config --global user.name "$GIT_RELEASE_USERNAME"
         - export GIT_TAG=release/$NEW_VERSION
         - git tag $GIT_TAG -a -m "tagging release"
-        - git push -q https://$GITHUB_TOKEN@github.com/github.com/liimaorg/liima-maven-plugin.git --tags
+        - git push -q https://$GITHUB_TOKEN@github.com/liimaorg/liima-maven-plugin.git --tags
         - ls -R
 
 deploy:
