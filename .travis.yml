@@ -39,6 +39,12 @@ jobs:
         - mvn -B -P release -s settings-sonatype.xml install
 #        - git tag release/$NEW_VERSION
 #        - git push origin release/$NEW_VERSION
+        - git config --global user.email "$GIT_RELEASE_EMAIL"
+        - git config --global user.name "$GIT_RELEASE_USERNAME"
+        - export GIT_TAG=release/$NEW_VERSION
+        - git tag $GIT_TAG -a -m "tagging release"
+        - git push -q https://$GITHUB_TOKEN@github.com/github.com/liimaorg/liima-maven-plugin.git --tags
+        - ls -R
 
 deploy:
   provider: pages
@@ -46,4 +52,4 @@ deploy:
   github_token: $GITHUB_TOKEN
   local_dir: ./target/site
   on:
-    branch: master
+    branch: release
