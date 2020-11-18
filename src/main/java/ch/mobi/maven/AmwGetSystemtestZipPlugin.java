@@ -25,10 +25,10 @@ package ch.mobi.maven;
 import ch.mobi.liima.client.LiimaClient;
 import ch.mobi.liima.client.LiimaConfiguration;
 import org.apache.maven.artifact.Artifact;
-import org.apache.maven.artifact.factory.ArtifactFactory;
+import org.apache.maven.artifact.factory.DefaultArtifactFactory;
 import org.apache.maven.artifact.repository.ArtifactRepository;
-import org.apache.maven.artifact.resolver.ArtifactNotFoundException;
-import org.apache.maven.artifact.resolver.ArtifactResolutionException;
+import org.apache.maven.artifact.resolver.ArtifactResolutionRequest;
+import org.apache.maven.artifact.resolver.ArtifactResolutionResult;
 import org.apache.maven.artifact.resolver.ArtifactResolver;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -91,7 +91,7 @@ public class AmwGetSystemtestZipPlugin extends AbstractMojo {
     @Component
     protected ArtifactResolver artifactResolver;
     @Component
-    protected ArtifactFactory artifactFactory;
+    protected DefaultArtifactFactory artifactFactory;
 
     @Parameter(defaultValue = "${project.remoteArtifactRepositories}", readonly = true, required = true)
     List<ArtifactRepository> pomRemoteRepositories;
@@ -136,12 +136,15 @@ public class AmwGetSystemtestZipPlugin extends AbstractMojo {
         }
 
         getLog().info("Resolving " + zipToDownload);
-        try {
-            artifactResolver.resolveAlways(zipToDownload, repoList, localRepository);
-        } catch (ArtifactResolutionException e) {
-            throw new MojoExecutionException("Could not resolve artifact", e);
-        } catch (ArtifactNotFoundException e) {
-            throw new MojoExecutionException("Artifact could not be found", e);
+
+        ArtifactResolutionRequest request = new ArtifactResolutionRequest();
+        request.setArtifact(zipToDownload);
+        request.setRemoteRepositories(repoList);
+        request.setLocalRepository(localRepository);
+        ArtifactResolutionResult result = artifactResolver.resolve(request);
+
+        for(Exception e : result.getExceptions()) {
+            throw new MojoExecutionException("Exception while resoving artifact", e);
         }
 
         //

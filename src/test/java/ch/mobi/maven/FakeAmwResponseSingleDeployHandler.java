@@ -34,6 +34,7 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 
 public class FakeAmwResponseSingleDeployHandler implements HttpRequestHandler {
 
@@ -63,7 +64,7 @@ public class FakeAmwResponseSingleDeployHandler implements HttpRequestHandler {
                 // GET ... Latest+deployment+job+for+App+Server+and+Env ...
                 if (request.getRequestLine().getUri().contains("Latest%20deployment%20job%20for%20App%20Server%20and%20Env")) {
                     InputStream deploymentsAsStream = getClass().getResourceAsStream("/" + this.deploymentsFilename);
-                    jsonResponse = IOUtils.toString(deploymentsAsStream);
+                    jsonResponse = IOUtils.toString(deploymentsAsStream, Charset.defaultCharset());
                 } else {
                     InputStream progressAsStream = getClass().getResourceAsStream("/" + "amw-tracking-deployment-scheduled.json");
                     if (pollingRequests >= 3) {
@@ -79,7 +80,7 @@ public class FakeAmwResponseSingleDeployHandler implements HttpRequestHandler {
                 BasicHttpEntityEnclosingRequest entityReq = (BasicHttpEntityEnclosingRequest) request;
                 postJson = EntityUtils.toString(entityReq.getEntity());
                 InputStream deploymentAsStream = getClass().getResourceAsStream("/" + this.deployRequestResponseFilename);
-                jsonResponse = IOUtils.toString(deploymentAsStream);
+                jsonResponse = IOUtils.toString(deploymentAsStream, Charset.defaultCharset());
                 this.postRequestCount++;
                 break;
             default:
