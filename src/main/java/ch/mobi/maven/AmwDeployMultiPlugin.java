@@ -95,7 +95,7 @@ public class AmwDeployMultiPlugin extends AbstractAmwDeployPlugin {
             throw new MojoFailureException("Invalid properties string provided.", e);
         }
 
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings({"unchecked", "rawtypes"})
         Map<String, String> appsMap = new HashMap<>((Map) props);
 
         if (getLog().isDebugEnabled()) {
