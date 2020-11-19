@@ -29,7 +29,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static org.hamcrest.core.StringContains.containsString;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.*;
 
 public class AbstractAmwDeployPluginTest {
 

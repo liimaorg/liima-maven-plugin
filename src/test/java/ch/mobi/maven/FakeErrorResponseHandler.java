@@ -23,7 +23,6 @@ package ch.mobi.maven;
  */
 
 import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpException;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.entity.ContentType;
@@ -33,6 +32,7 @@ import org.apache.http.protocol.HttpRequestHandler;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 
 public class FakeErrorResponseHandler implements HttpRequestHandler {
 
@@ -45,7 +45,7 @@ public class FakeErrorResponseHandler implements HttpRequestHandler {
     @Override
     public void handle(HttpRequest request, HttpResponse response, HttpContext context) throws IOException {
         InputStream resourceAsStream = getClass().getResourceAsStream("/" + this.filename);
-        String jsonResponse = IOUtils.toString(resourceAsStream);
+        String jsonResponse = IOUtils.toString(resourceAsStream, Charset.defaultCharset());
 
         response.setStatusCode(400);
         response.setEntity(new StringEntity(jsonResponse, ContentType.APPLICATION_JSON));
